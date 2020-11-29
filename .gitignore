@@ -1,0 +1,7 @@
+*.pyc
+*.pyo
+*.swp
+.tags
+src/gt/site_media/*
+docker-compose.override.yml
+**/__pycache__

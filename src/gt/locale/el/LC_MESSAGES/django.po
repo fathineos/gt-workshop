@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Fotis Athineos, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-16 09:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Fotis Athineos\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/gt/service/models.py:17
+msgid "Service description"
+msgstr "Περιγραφή"
+
+#: src/gt/service/models.py:22
+msgid "Remarks"
+msgstr "Παρατηρήσεις"
+
+#: src/gt/service/models.py:27
+msgid "Travel distance in kilometers"
+msgstr "Χιλιόμετρα"
+
+#: src/gt/service/models.py:35
+msgid "Service cost"
+msgstr "Κόστος"
+
+#: src/gt/service/models.py:41
+msgid "Service creation date"
+msgstr "Ημερομηνία σέρβις"
+
+#: src/gt/service/models.py:46 src/gt/vehicle/models.py:51
+msgid "Entry creation date"
+msgstr "Ημερομηνία εγγραφής"
+
+#: src/gt/service/models.py:56
+msgid "Service"
+msgstr "Σέρβις"
+
+#: src/gt/service/models.py:57
+msgid "Services"
+msgstr "Σέρβις"
+
+#: src/gt/settings.py:108
+msgid "American English"
+msgstr "Αγγλικά (us)"
+
+#: src/gt/settings.py:109
+msgid "Greek"
+msgstr "Ελληνικά"
+
+#: src/gt/vehicle/admin.py:22
+msgid "Cliente"
+msgstr "Αρχείο Σέρβις"
+
+#: src/gt/vehicle/models.py:11
+msgid "Vehicle plate number"
+msgstr "Πινακίδα"
+
+#: src/gt/vehicle/models.py:16
+msgid "Vehicle manufacturer"
+msgstr "Κατασκευαστής"
+
+#: src/gt/vehicle/models.py:22
+msgid "Vehicle color"
+msgstr "Χρώμα"
+
+#: src/gt/vehicle/models.py:28
+msgid "Vehicle identification number"
+msgstr "Αριθμός πλαισίου"
+
+#: src/gt/vehicle/models.py:34
+msgid "Engine number"
+msgstr "Αριθμός μηχανής"
+
+#: src/gt/vehicle/models.py:41
+msgid "Construction year"
+msgstr "Έτος κατασκευής"
+
+#: src/gt/vehicle/models.py:46
+msgid "Purchage date"
+msgstr "Ημερομηνία αγοράς"
+
+#: src/gt/vehicle/models.py:61
+msgid "Vehicle"
+msgstr "Όχημα"
+
+#: src/gt/vehicle/models.py:62
+msgid "Vehicles"
+msgstr "Οχήματα"
+
+#: src/gt/vehicle/models.py:69
+msgid "Full name"
+msgstr "Ονοματεπώνυμο"
+
+#: src/gt/vehicle/models.py:75
+msgid "Address"
+msgstr "Διεύθυνση"
+
+#: src/gt/vehicle/models.py:80
+msgid "Primary phone"
+msgstr "Τηλέφωνο"
+
+#: src/gt/vehicle/models.py:86
+msgid "Secondary phone"
+msgstr "Τηλέφωνο 2"
+
+#: src/gt/vehicle/models.py:98
+msgid "Vehicle owner"
+msgstr "Πελάτης"
+
+#: src/gt/vehicle/models.py:99
+msgid "Vehicle owners"
+msgstr "Πελάτες"
+
+#: src/gt/vehicle/models.py:117
+msgid "Vehicle ownership"
+msgstr "Ιδιοκτήτης"
+
+#: src/gt/vehicle/models.py:118
+msgid "Vehicle ownerships"
+msgstr "Ιδιοκτήτες"
