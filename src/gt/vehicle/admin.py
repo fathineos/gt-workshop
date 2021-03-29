@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
 from gt.vehicle.models import Vehicle, VehicleOwner, VehicleOwnership
 from gt.service.admin import ServiceInline
@@ -27,10 +28,10 @@ class VehicleOwnershipInline(admin.StackedInline):
 
 
 @admin.register(Vehicle)
-class Vehicle(ModelAdmin):
+class VehicleAdmin(ModelAdmin):
     actions = []
     inlines = (ServiceInline, VehicleOwnershipInline,)
-    list_display = ('plate_number', 'manufacturer', 'color')
+    list_display = ('plate_number', 'manufacturer', 'last_service_date')
     search_fields = ('plate_number', 'manufacturer',
                      'vehicle_identification_number',
                      'vehicleownership__vehicle_owner__full_name',
@@ -46,8 +47,17 @@ class Vehicle(ModelAdmin):
     )
 
     def get_queryset(self, request):
-        qs = super(Vehicle, self).get_queryset(request)
-        return qs.order_by('-service__service_date')
+        qs = super(VehicleAdmin, self).get_queryset(request)
+        qs = Vehicle.objects.annotate(
+            last_service_date=Max('service__service_date')
+        ).order_by(
+            '-last_service_date'
+        )
+
+        return qs
+
+    def last_service_date(self, obj):
+        return obj.last_service_date
 
 
 @admin.register(VehicleOwner)
