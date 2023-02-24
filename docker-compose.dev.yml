@@ -18,8 +18,5 @@ services:
       - ./src:/home/app/src
       - static-assets:/static/
 
-  gt-postgres:
-    restart: always
-
 volumes:
   static-assets:

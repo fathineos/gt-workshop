@@ -46,8 +46,7 @@ up: _bootstrap
 		-f docker-compose.override.yml \
 		up \
 		gt-nginx \
-		gt-web \
-		gt-postgres
+		gt-web
 
 _bootstrap: _create-override db-migrate
 
@@ -63,7 +62,7 @@ db-migrate:
 		run --rm \
 		--entrypoint="sh -c" \
 		gt-web \
-		"sh /wait-for.sh -t 20 gt-postgres:5432 -- ./manage.py migrate"
+		"./manage.py migrate"
 
 stop:
 	docker-compose \

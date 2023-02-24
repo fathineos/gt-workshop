@@ -1,14 +1,5 @@
 version: '3.7'
 
 services:
-  gt-postgres:
-    image: postgres:12.3-alpine
-    environment:
-      - POSTGRES_DB=gt
-      - POSTGRES_USER=gt
-      - POSTGRES_PASSWORD=gt
-
   gt-web:
     image: gt:${IMAGE_TARGET_TAG:-development}
-    depends_on:
-      - gt-postgres

@@ -8,13 +8,11 @@ RUN useradd --create-home --shell /bin/bash app
 
 COPY --chown=app:app ./requirements.txt /home/app/requirements.txt
 ENV BUILD_REQS='build-essential gcc ca-certificates gnupg'
-ENV RUNTIME_REQS='git postgresql-client-12 gettext'
+ENV RUNTIME_REQS='git gettext'
 ENV EXTRA_PACKAGES='curl netcat vim'
 
 RUN apt update -y -qq && \
     apt install -y --no-install-recommends $BUILD_REQS $EXTRA_PACKAGES && \
-    curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-    sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
     apt update -y -qq && \
     apt install -y --no-install-recommends $RUNTIME_REQS && \
     pip install -r /home/app/requirements.txt && \

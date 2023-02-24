@@ -17,7 +17,6 @@ setup(
         'django-baton==1.13.1',
         'gunicorn==20.0.4',
         'ipython==7.20.0',
-        'psycopg2-binary==2.8.6',
     ],
     python_requires='>=3.8.0'
 )

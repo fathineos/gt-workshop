@@ -74,12 +74,8 @@ WSGI_APPLICATION = 'gt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('GT_POSTGRES_NAME', 'gt'),
-        'USER': os.environ.get('GT_POSTGRES_USER', 'gt'),
-        'PASSWORD': os.environ.get('GT_POSTGRES_PASSWORD', 'gt'),
-        'HOST': os.environ.get('GT_POSTGRES_HOST', 'gt-postgres'),
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.gt',
     }
 }
 
