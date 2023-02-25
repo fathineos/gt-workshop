@@ -35,6 +35,9 @@ RUN usermod -u ${USER_ID} app && \
 RUN mkdir /static && chown -R app:app /static
 RUN chown -R app:app /home/app
 
+RUN mkdir /sqlite3 && chown -R app:app /sqlite3
+RUN chown -R app:app /sqlite3
+
 USER app
 
 ########################

@@ -48,7 +48,7 @@ up: _bootstrap
 		gt-nginx \
 		gt-web
 
-_bootstrap: _create-override db-migrate
+_bootstrap: _create-override db-migrate collectstatic
 
 _create-override:
 	if [ ! -f "docker-compose.override.yml" ]; \
@@ -63,6 +63,15 @@ db-migrate:
 		--entrypoint="sh -c" \
 		gt-web \
 		"./manage.py migrate"
+
+collectstatic:
+	docker-compose \
+		-f docker-compose.yml \
+		-f docker-compose.dev.yml \
+		run --rm \
+		--entrypoint="sh -c" \
+		gt-web \
+		"./manage.py collectstatic --no-input"
 
 stop:
 	docker-compose \

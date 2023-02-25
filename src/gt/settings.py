@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'gt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.gt',
+        'NAME': '/sqlite3/gt.db',
     }
 }
 
