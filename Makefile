@@ -6,7 +6,7 @@ IMAGE_TARGET_STAGE=development
 IMAGE_TARGET_TAG=development
 
 build:
-	DOCKER_BUILDKIT=1 docker build . \
+	docker build . \
 		-f docker/Dockerfile \
 		--progress plain \
 		--build-arg USER_ID=${USER_ID} \

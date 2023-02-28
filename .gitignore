@@ -1,7 +1,8 @@
+**/__pycache__
 *.pyc
 *.pyo
 *.swp
+.sqlite3
 .tags
-src/gt/site_media/*
 docker-compose.override.yml
-**/__pycache__
+src/gt/site_media/*

@@ -1,0 +1,16 @@
+**/*.log
+**/*.pyc
+.agignore
+.editorconfig
+.git
+.gitattributes
+.gitignore
+.noseids
+.sqlite3/
+.tags
+.vim*
+Makefile
+README.md
+docker-compose.dev.yml
+docker-compose.override.yml
+docker-compose.yml
