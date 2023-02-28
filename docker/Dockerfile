@@ -1,8 +1,6 @@
-# syntax = docker/dockerfile:1.0.2-experimental
-
 #####################
 ### builder image ###
-FROM python:3.8.5-slim-buster as builder
+FROM python:3.11.2-slim-bullseye as builder
 
 RUN useradd --create-home --shell /bin/bash app
 

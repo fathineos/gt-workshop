@@ -13,10 +13,10 @@ setup(
     packages=find_packages('src'),
     include_package_data=True,
     install_requires=[
-        'Django==3.1.5',
-        'django-baton==1.13.1',
-        'gunicorn==20.0.4',
-        'ipython==7.20.0',
+        'Django==3.2.18',
+        'django-baton==2.6.2',
+        'gunicorn==20.1.0',
+        'ipython==8.10.0',
     ],
     python_requires='>=3.8.0'
 )
