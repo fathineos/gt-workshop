@@ -37,7 +37,7 @@ class VehicleAdmin(ModelAdmin):
                      'vehicleownership__vehicle_owner__full_name',
                      'vehicleownership__vehicle_owner__phone1')
     fieldsets = (
-        (_('Cliente'), {
+        (_('Client'), {
             'fields': ('plate_number', 'manufacturer', 'color',
                        'vehicle_identification_number', 'engine_number',
                        'construction_year'),

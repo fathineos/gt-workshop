@@ -59,7 +59,7 @@ msgid "Greek"
 msgstr "Ελληνικά"
 
 #: src/gt/vehicle/admin.py:22
-msgid "Cliente"
+msgid "Client"
 msgstr "Αρχείο Σέρβις"
 
 #: src/gt/vehicle/models.py:11
