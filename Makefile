@@ -26,7 +26,6 @@ django-shell:
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
-		--entrypoint="sh -c" \
 		gt-web \
 		"./manage.py shell"
 
@@ -35,7 +34,6 @@ db-shell:
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
-		--entrypoint="sh -c" \
 		gt-web \
 		"./manage.py dbshell"
 
@@ -60,7 +58,6 @@ db-migrate:
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
-		--entrypoint="sh -c" \
 		gt-web \
 		"./manage.py migrate"
 
@@ -69,7 +66,6 @@ collectstatic:
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
-		--entrypoint="sh -c" \
 		gt-web \
 		"./manage.py collectstatic --no-input"
 
@@ -81,7 +77,7 @@ stop:
 		stop
 
 down:
-	docker-compose
+	docker-compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		down
