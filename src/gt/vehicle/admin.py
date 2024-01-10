@@ -31,7 +31,7 @@ class VehicleOwnershipInline(admin.StackedInline):
 class VehicleAdmin(ModelAdmin):
     actions = []
     inlines = (ServiceInline, VehicleOwnershipInline,)
-    list_display = ('plate_number', 'manufacturer', 'last_service_date')
+    list_display = ('plate_number', 'manufacturer', 'last_service_date', 'total_service_cost', 'last_service_travel_distance')
     search_fields = ('plate_number', 'manufacturer',
                      'vehicle_identification_number',
                      'vehicleownership__vehicle_owner__full_name',
@@ -39,7 +39,7 @@ class VehicleAdmin(ModelAdmin):
     fieldsets = (
         (_('Client'), {
             'fields': ('plate_number', 'manufacturer', 'color',
-                       'vehicle_identification_number', 'engine_number',
+                       'vehicle_identification_number', 'engine_number', 'engine_oil',
                        'construction_year'),
             'classes': ('baton-tabs-init', 'baton-tab-inline-service',
                         'baton-tab-inline-vehicleownership'),

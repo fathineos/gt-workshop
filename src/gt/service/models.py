@@ -35,6 +35,11 @@ class Service(models.Model):
         verbose_name=_('Service cost'),
         validators=[MinValueValidator(0)]
     )
+    workshop = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('Workshop name'),
+    )
     service_date = models.DateTimeField(
         default=timezone.now,
         null=False,

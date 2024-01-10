@@ -1,3 +1,4 @@
+from typing import Optional
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
@@ -33,6 +34,12 @@ class Vehicle(models.Model):
         max_length=100,
         verbose_name=_('Engine number')
     )
+    engine_oil = models.CharField(
+        null=True,
+        blank=True,
+        max_length=100,
+        verbose_name=_('Engine oil')
+    )
     construction_year = models.IntegerField(
         null=True,
         blank=True,
@@ -54,6 +61,16 @@ class Vehicle(models.Model):
 
     def __str__(self) -> str:
         return self.plate_number
+
+    @property
+    def total_service_cost(self) -> float:
+        return float(self.service_set.aggregate(models.Sum('cost'))['cost__sum'])
+
+    @property
+    def last_service_travel_distance(self) -> Optional[int]:
+        last_service = self.service_set.latest('service_date')
+        return last_service.travel_distance if last_service else None
+
 
     class Meta:
         db_table = 'vehicle'
