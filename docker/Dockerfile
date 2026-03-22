@@ -28,7 +28,7 @@ ARG USER_ID
 ARG GROUP_ID
 
 RUN usermod -u ${USER_ID} app && \
-    groupmod -g ${GROUP_ID} app
+    groupmod -g ${GROUP_ID} app || groupmod -o -g ${GROUP_ID} app
 
 RUN mkdir /static && chown -R app:app /static
 RUN chown -R app:app /home/app
