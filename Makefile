@@ -15,30 +15,30 @@ build:
 		-t ${IMAGE_BASE_NAME}:${IMAGE_TARGET_TAG}
 
 shell:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
 		gt-web bash
 
 django-shell:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
 		gt-web \
-		"./manage.py shell"
+		./manage.py shell
 
 db-shell:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
 		gt-web \
-		"./manage.py dbshell"
+		./manage.py dbshell
 
 up: _bootstrap
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		-f docker-compose.override.yml \
@@ -54,30 +54,30 @@ _create-override:
 	fi
 
 db-migrate:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
 		gt-web \
-		"./manage.py migrate"
+		./manage.py migrate
 
 collectstatic:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		run --rm \
 		gt-web \
-		"./manage.py collectstatic --no-input"
+		./manage.py collectstatic --no-input
 
 stop:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		-f docker-compose.override.yml \
 		stop
 
 down:
-	docker-compose \
+	docker compose \
 		-f docker-compose.yml \
 		-f docker-compose.dev.yml \
 		down
