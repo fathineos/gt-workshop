@@ -67,6 +67,16 @@ class Vehicle(models.Model):
         return float(self.service_set.aggregate(models.Sum('cost'))['cost__sum'])
 
     @property
+    def total_cost(self) -> float:
+        result = self.service_set.aggregate(models.Sum('cost'))['cost__sum']
+        return float(result) if result else 0.0
+
+    @property
+    def total_damage_cost(self) -> float:
+        result = self.service_set.filter(damage=True).aggregate(models.Sum('cost'))['cost__sum']
+        return float(result) if result else 0.0
+
+    @property
     def last_service_travel_distance(self) -> Optional[int]:
         last_service = self.service_set.latest('service_date')
         return last_service.travel_distance if last_service else None

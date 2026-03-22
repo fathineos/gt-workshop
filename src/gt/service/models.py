@@ -35,6 +35,10 @@ class Service(models.Model):
         verbose_name=_('Service cost'),
         validators=[MinValueValidator(0)]
     )
+    damage = models.BooleanField(
+        default=False,
+        verbose_name=_('Damage?')
+    )
     workshop = models.TextField(
         null=True,
         blank=True,

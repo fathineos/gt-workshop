@@ -37,16 +37,17 @@ class VehicleOwnershipInline(admin.StackedInline):
 @admin.register(Vehicle)
 class VehicleAdmin(ModelAdmin):
     inlines = (ServiceInline, VehicleOwnershipInline,)
-    list_display = ('plate_number', 'manufacturer', 'last_service_date', 'total_service_cost', 'last_service_travel_distance')
+    list_display = ('plate_number', 'manufacturer', 'last_service_date', 'total_cost', 'total_damage_cost', 'last_service_travel_distance')
     search_fields = ('plate_number', 'manufacturer',
                      'vehicle_identification_number',
                      'vehicleownership__vehicle_owner__full_name',
                      'vehicleownership__vehicle_owner__phone1')
+    readonly_fields = ('total_cost', 'total_damage_cost')
     fieldsets = (
         (_('Client'), {
             'fields': ('plate_number', 'manufacturer', 'color',
                        'vehicle_identification_number', 'engine_number', 'engine_oil',
-                       'construction_year'),
+                       'construction_year', 'total_cost', 'total_damage_cost'),
             'classes': ('baton-tabs-init', 'baton-tab-inline-service',
                         'baton-tab-inline-vehicleownership'),
         }),
@@ -64,6 +65,12 @@ class VehicleAdmin(ModelAdmin):
 
     def last_service_date(self, obj):
         return obj.last_service_date
+
+    def total_cost(self, obj):
+        return obj.total_cost
+
+    def total_damage_cost(self, obj):
+        return obj.total_damage_cost
 
     def export_csv(self, _, queryset):
         if not queryset.count():
