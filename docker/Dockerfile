@@ -1,13 +1,13 @@
 #####################
 ### builder image ###
-FROM python:3.11.2-slim-bullseye as builder
+FROM python:3.14-slim-trixie as builder
 
 RUN useradd --create-home --shell /bin/bash app
 
 COPY --chown=app:app ./requirements.txt /home/app/requirements.txt
 ENV BUILD_REQS='build-essential gcc ca-certificates gnupg'
 ENV RUNTIME_REQS='git gettext'
-ENV EXTRA_PACKAGES='curl netcat vim'
+ENV EXTRA_PACKAGES='curl vim'
 
 RUN apt update -y -qq && \
     apt install -y --no-install-recommends $BUILD_REQS $EXTRA_PACKAGES && \
