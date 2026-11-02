@@ -47,6 +47,13 @@ class ServiceInline(admin.TabularInline):
         js = ('service/add_service_top.js',
               'service/service_inline_labels.js')
 
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'workshop':
+            kwargs['widget'] = forms.Textarea(attrs={'rows': 1})
+        elif db_field.name == 'work_description':
+            kwargs['widget'] = forms.Textarea(attrs={'rows': 5})
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
+
     def get_queryset(self, request):
         qs = super(ServiceInline, self).get_queryset(request)
         qs = Service.objects.order_by('-service_date')

@@ -3,6 +3,14 @@
     display: none;
 }
 
+/* Start at one line and grow with the content (where supported). */
+.js-inline-admin-formset td.field-workshop textarea {
+    field-sizing: content;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 0;
+}
+
 /* Stack the service inline rows on small screens so the table never
    scrolls horizontally. */
 @media (max-width: 767px) {
