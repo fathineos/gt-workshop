@@ -129,3 +129,19 @@ msgstr "Ιδιοκτήτης"
 #: src/gt/vehicle/models.py:118
 msgid "Vehicle ownerships"
 msgstr "Ιδιοκτήτες"
+
+#: src/gt/service/models.py
+msgid "Damage?"
+msgstr "Ζημιά;"
+
+#: src/gt/service/models.py
+msgid "Workshop name"
+msgstr "Συνεργείο"
+
+#: src/gt/vehicle/models.py
+msgid "Engine oil"
+msgstr "Λάδι κινητήρα"
+
+#: src/gt/vehicle/admin.py
+msgid "Travel distance (km)"
+msgstr "Χιλιόμετρα (km)"
