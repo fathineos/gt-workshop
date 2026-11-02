@@ -78,7 +78,9 @@ class Vehicle(models.Model):
 
     @property
     def last_service_travel_distance(self) -> Optional[int]:
-        last_service = self.service_set.latest('service_date')
+        last_service = (self.service_set
+                        .filter(travel_distance__isnull=False)
+                        .order_by('-service_date').first())
         return last_service.travel_distance if last_service else None
 
 

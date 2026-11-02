@@ -35,17 +35,19 @@ class VehicleOwnershipInline(admin.StackedInline):
 @admin.register(Vehicle)
 class VehicleAdmin(ModelAdmin):
     inlines = (ServiceInline, VehicleOwnershipInline,)
-    list_display = ('plate_number', 'manufacturer', 'last_service_date', 'total_cost', 'total_damage_cost', 'last_service_travel_distance')
+    list_display = ('plate_number', 'manufacturer', 'last_service_date', 'total_cost', 'total_damage_cost', 'last_travel_distance')
     search_fields = ('plate_number', 'manufacturer',
                      'vehicle_identification_number',
                      'vehicleownership__vehicle_owner__full_name',
                      'vehicleownership__vehicle_owner__phone1')
-    readonly_fields = ('total_cost', 'total_damage_cost')
+    readonly_fields = ('total_cost', 'total_damage_cost',
+                       'last_travel_distance')
     fieldsets = (
         (_('Client'), {
             'fields': ('plate_number', 'manufacturer', 'color',
                        'vehicle_identification_number', 'engine_number', 'engine_oil',
-                       'construction_year', 'total_cost', 'total_damage_cost'),
+                       'construction_year', 'last_travel_distance',
+                       'total_cost', 'total_damage_cost'),
             'classes': ('baton-tabs-init', 'baton-tab-inline-service',
                         'baton-tab-inline-vehicleownership'),
         }),
@@ -63,6 +65,10 @@ class VehicleAdmin(ModelAdmin):
 
     def last_service_date(self, obj):
         return obj.last_service_date
+
+    @admin.display(description=_('Travel distance (km)'))
+    def last_travel_distance(self, obj):
+        return obj.last_service_travel_distance
 
     def total_cost(self, obj):
         return obj.total_cost
