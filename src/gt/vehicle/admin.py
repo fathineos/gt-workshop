@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
 from django.urls import path
+from django.utils import timezone
 from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
 from gt.vehicle.pdf import vehicles_pdf
@@ -63,8 +64,11 @@ class VehicleAdmin(ModelAdmin):
 
         return qs
 
+    @admin.display(description=_('Last service date'),
+                   ordering='last_service_date')
     def last_service_date(self, obj):
-        return obj.last_service_date
+        value = obj.last_service_date
+        return timezone.localtime(value).date() if value else None
 
     @admin.display(description=_('Travel distance (km)'))
     def last_travel_distance(self, obj):
