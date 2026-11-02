@@ -43,9 +43,11 @@ class ServiceInline(admin.TabularInline):
     fields = ('service_date', 'work_description', 'cost', 'damage', 'workshop')
 
     class Media:
-        css = {'all': ('service/service_inline_mobile.css',)}
+        css = {'all': ('service/service_inline_mobile.css',
+                       'service/service_inline_delete.css')}
         js = ('service/add_service_top.js',
-              'service/service_inline_labels.js')
+              'service/service_inline_labels.js',
+              'service/service_inline_delete.js')
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'workshop':
