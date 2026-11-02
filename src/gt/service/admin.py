@@ -40,7 +40,8 @@ class ServiceInline(admin.TabularInline):
     form = ServiceInlineForm
     extra = 0
     classes = ('collapse-entry', 'expand-first', )
-    fields = ('service_date', 'work_description', 'cost', 'damage', 'workshop')
+    fields = ('service_date', 'work_description', 'remarks', 'travel_distance',
+              'cost', 'damage', 'workshop')
 
     class Media:
         css = {'all': ('service/service_inline_mobile.css',
@@ -53,6 +54,8 @@ class ServiceInline(admin.TabularInline):
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == 'workshop':
             kwargs['widget'] = forms.Textarea(attrs={'rows': 1})
+        elif db_field.name == 'remarks':
+            kwargs['widget'] = forms.Textarea(attrs={'rows': 3})
         elif db_field.name == 'work_description':
             kwargs['widget'] = forms.Textarea(attrs={'rows': 5})
         return super().formfield_for_dbfield(db_field, request, **kwargs)
