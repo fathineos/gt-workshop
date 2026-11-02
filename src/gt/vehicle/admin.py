@@ -1,17 +1,13 @@
-from csv import writer
 from datetime import datetime
-from io import BytesIO, StringIO
-from typing import Tuple
-from zipfile import ZipFile
 from django.http import HttpResponse
 from django.contrib import admin
 from django.shortcuts import get_object_or_404
 from django.urls import path
 from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
+from gt.vehicle.pdf import vehicles_pdf
 from gt.vehicle.models import Vehicle, VehicleOwner, VehicleOwnership
 from gt.service.admin import ServiceInline
-from gt.service.models import Service
 
 
 admin.site.disable_action('delete_selected')
@@ -76,71 +72,32 @@ class VehicleAdmin(ModelAdmin):
 
     def get_urls(self):
         custom = [
-            path('<int:object_id>/export-csv/',
-                 self.admin_site.admin_view(self.export_csv_view),
-                 name='vehicle_vehicle_export_csv'),
+            path('<int:object_id>/export-pdf/',
+                 self.admin_site.admin_view(self.export_pdf_view),
+                 name='vehicle_vehicle_export_pdf'),
         ]
         return custom + super().get_urls()
 
-    def export_csv_view(self, request, object_id):
+    def export_pdf_view(self, request, object_id):
         vehicle = get_object_or_404(Vehicle, pk=object_id)
-        filename, csv_file = self._generate_vehicle_csv(vehicle)
-        response = HttpResponse(csv_file.getvalue(),
-                                content_type='text/csv; charset=utf-8')
-        response['Content-Disposition'] = f'attachment; filename="{filename}"'
-        csv_file.close()
-        return response
+        return self._pdf_response([vehicle], vehicle.plate_number.lower())
 
-    def export_csv(self, _, queryset):
+    def export_pdf(self, _, queryset):
         if not queryset.count():
             return
+        return self._pdf_response(queryset, 'vehicles')
 
-        csv_files = [
-            self._generate_vehicle_csv(v) for v in queryset for v in queryset.all()
-        ]
-        filename = "{}.{}".format(
-            datetime.now().strftime('%Y%m%d-%H%m'),
-            'zip'
-        )
-        zip_buffer = BytesIO()
-        with ZipFile(zip_buffer, 'w') as zipf:
-            for file_name, csv_file in csv_files:
-                zipf.writestr(file_name, csv_file.getvalue())
-                csv_file.close()
-
-        response = HttpResponse(zip_buffer.getvalue(), content_type='application/zip')
+    @staticmethod
+    def _pdf_response(vehicles, name):
+        filename = "{}-{}.pdf".format(
+            name, datetime.now().strftime('%Y%m%d-%H%M'))
+        response = HttpResponse(vehicles_pdf(vehicles),
+                                content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
-
         return response
 
-    @classmethod
-    def _generate_vehicle_csv(cls, vehicle) -> Tuple[str, StringIO]:
-        filename = "{}-{}.{}".format(
-            vehicle.plate_number.lower(),
-            datetime.now().strftime('%Y%m%d-%H%m'),
-            'csv'
-        )
-        csv = StringIO()
-        csv_writer = writer(csv)
-        headers = []
-        for field in Service._meta.fields:
-            headers.append(field.verbose_name)
-        csv_writer.writerow(headers)
-
-        for service in vehicle.service_set.order_by('-service_date'):
-            row = []
-            for field in Service._meta.fields:
-                value = getattr(service, field.name)
-                if callable(value):
-                    value = value()
-                row.append(value)
-            csv_writer.writerow(row)
-
-        return (filename, csv)
-
-
-    export_csv.short_description = "Export to CSV"
-    actions = [export_csv]
+    export_pdf.short_description = "Export to PDF"
+    actions = [export_pdf]
 
 
 @admin.register(VehicleOwner)

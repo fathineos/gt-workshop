@@ -4,7 +4,7 @@
 {% block object-tools-items %}
   {% if original %}
     <li>
-      <a href="{% url 'admin:vehicle_vehicle_export_csv' original.pk %}" class="export_csv_link">{% translate "Export to CSV" %}</a>
+      <a href="{% url 'admin:vehicle_vehicle_export_pdf' original.pk %}" class="export_pdf_link">{% translate "Export to PDF" %}</a>
     </li>
   {% endif %}
   {{ block.super }}

@@ -2,3 +2,4 @@ Django==6.0.3
 django-baton==5.1.2
 gunicorn==25.2.0
 ipython==9.11.0
+fpdf2==2.9.0

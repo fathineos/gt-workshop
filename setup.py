@@ -17,6 +17,7 @@ setup(
         'django-baton==5.1.2',
         'gunicorn==25.2.0',
         'ipython==9.11.0',
+        'fpdf2==2.9.0',
     ],
     python_requires='>=3.12.0'
 )
