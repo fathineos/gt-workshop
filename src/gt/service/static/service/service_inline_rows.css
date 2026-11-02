@@ -1,0 +1,12 @@
+/* Alternate the background of service rows (gray / white).
+   Baton styles `.change-form #content form .form-row` (with an id), so the
+   selectors below are prefixed with #content to win over it. */
+#content .js-inline-admin-formset tbody tr.form-row:not(.empty-form):nth-of-type(odd),
+#content .js-inline-admin-formset tbody tr.form-row:not(.empty-form):nth-of-type(odd) td {
+    background: #f6f6f6 !important;
+}
+
+#content .js-inline-admin-formset tbody tr.form-row:not(.empty-form):nth-of-type(even),
+#content .js-inline-admin-formset tbody tr.form-row:not(.empty-form):nth-of-type(even) td {
+    background: #fefefe !important;
+}

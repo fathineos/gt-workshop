@@ -44,7 +44,8 @@ class ServiceInline(admin.TabularInline):
 
     class Media:
         css = {'all': ('service/service_inline_mobile.css',
-                       'service/service_inline_delete.css')}
+                       'service/service_inline_delete.css',
+                       'service/service_inline_rows.css')}
         js = ('service/add_service_top.js',
               'service/service_inline_labels.js',
               'service/service_inline_delete.js')
