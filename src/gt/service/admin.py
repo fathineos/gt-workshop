@@ -9,7 +9,9 @@ class ServiceInline(admin.TabularInline):
     fields = ('service_date', 'work_description', 'cost', 'damage', 'workshop')
 
     class Media:
-        js = ('service/add_service_top.js',)
+        css = {'all': ('service/service_inline_mobile.css',)}
+        js = ('service/add_service_top.js',
+              'service/service_inline_labels.js')
 
     def get_queryset(self, request):
         qs = super(ServiceInline, self).get_queryset(request)

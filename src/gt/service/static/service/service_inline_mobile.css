@@ -1,0 +1,95 @@
+/* Labels are only needed in the stacked layout. */
+.mobile-label {
+    display: none;
+}
+
+/* Stack the service inline rows on small screens so the table never
+   scrolls horizontally. */
+@media (max-width: 767px) {
+    .js-inline-admin-formset .tabular,
+    .js-inline-admin-formset .tabular fieldset,
+    .js-inline-admin-formset .tabular .module {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
+    .js-inline-admin-formset table,
+    .js-inline-admin-formset table tbody,
+    .js-inline-admin-formset table tr,
+    .js-inline-admin-formset table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .js-inline-admin-formset table thead {
+        display: none;
+    }
+
+    .js-inline-admin-formset table tr.form-row {
+        border-bottom: 2px solid #ccc;
+        padding: 2px 0;
+    }
+
+    .js-inline-admin-formset table tr.empty-form {
+        display: none;
+    }
+
+    .js-inline-admin-formset table td {
+        border: 0;
+        padding: 8px 8px !important;
+    }
+
+    .js-inline-admin-formset table .mobile-label {
+        display: block;
+        float: none;
+        width: auto;
+        font-weight: bold;
+        font-size: 0.85em;
+        line-height: 1.2;
+        margin: 0 0 1px;
+        padding: 0;
+    }
+
+    /* Empty helper cells (whitespace only, so :empty does not match). */
+    .js-inline-admin-formset table td.original:not(:has(a)),
+    .js-inline-admin-formset table td.delete:not(:has(input)),
+    .js-inline-admin-formset table td.hidden {
+        display: none !important;
+    }
+
+    .js-inline-admin-formset table td.original,
+    .js-inline-admin-formset table td.delete {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .js-inline-admin-formset table td p,
+    .js-inline-admin-formset table td ul.errorlist {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .js-inline-admin-formset table td input,
+    .js-inline-admin-formset table td select,
+    .js-inline-admin-formset table td textarea {
+        margin: 0 !important;
+    }
+
+    .js-inline-admin-formset table td textarea {
+        height: auto;
+        min-height: 0;
+        display: block;
+    }
+
+    .js-inline-admin-formset table input[type=text],
+    .js-inline-admin-formset table input[type=number],
+    .js-inline-admin-formset table select,
+    .js-inline-admin-formset table textarea,
+    .js-inline-admin-formset table .vDateField,
+    .js-inline-admin-formset table .vTimeField {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
