@@ -5,6 +5,8 @@ from typing import Tuple
 from zipfile import ZipFile
 from django.http import HttpResponse
 from django.contrib import admin
+from django.shortcuts import get_object_or_404
+from django.urls import path
 from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
 from gt.vehicle.models import Vehicle, VehicleOwner, VehicleOwnership
@@ -71,6 +73,23 @@ class VehicleAdmin(ModelAdmin):
 
     def total_damage_cost(self, obj):
         return obj.total_damage_cost
+
+    def get_urls(self):
+        custom = [
+            path('<int:object_id>/export-csv/',
+                 self.admin_site.admin_view(self.export_csv_view),
+                 name='vehicle_vehicle_export_csv'),
+        ]
+        return custom + super().get_urls()
+
+    def export_csv_view(self, request, object_id):
+        vehicle = get_object_or_404(Vehicle, pk=object_id)
+        filename, csv_file = self._generate_vehicle_csv(vehicle)
+        response = HttpResponse(csv_file.getvalue(),
+                                content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        csv_file.close()
+        return response
 
     def export_csv(self, _, queryset):
         if not queryset.count():
